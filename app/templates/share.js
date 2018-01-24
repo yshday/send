@@ -1,4 +1,5 @@
 /* global EXPIRE_SECONDS */
+// TODO refactor?
 const html = require('choo/html');
 const assets = require('../../common/assets');
 const notFound = require('./notFound');
@@ -144,12 +145,11 @@ module.exports = function(state, emit) {
 
   function resetPassword(event) {
     event.preventDefault();
-    const existingPassword = file.password;
     const password = document.querySelector('#unlock-reset-input').value;
     if (password.length > 0) {
       document.getElementById('copy').classList.remove('wait-password');
       document.getElementById('copy-btn').disabled = false;
-      emit('password', { existingPassword, password, file });
+      emit('password', { password, file });
     }
   }
 
